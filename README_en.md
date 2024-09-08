@@ -60,8 +60,9 @@ The `BankAccount` class has the following operations:
 
 ### Tasks
 
-1. Create a new operation in the `BankAccount` class called `transferTo(final BankAccount otherAccount, final double amount)` that transfers the specified amount from the current bank account to the other bank account. For example, if the current bank account has a balance of $100 and the other bank account has a balance of $50, and the transfer amount is $25, the new balances should be $75 for the current bank account and $75 for the other bank account. Pay attention to defensive programming.
-2. Create a new operation in the `BankAccount` class called `addInterest(final double rate)` that adds interest to the bank account based on the specified interest rate. For example, if the current balance is $100 and the interest rate is 5%, the new balance should be $105. Pay attention to defensive programming.
+
+1. Create a new operation in the `BankAccount` class called `transferTo(final BankAccount otherAccount, final double amount)` that transfers the specified amount from the current bank account to the other bank account. For example, if the current bank account has a balance of \$100 and the other bank account has a balance of \$50, and the transfer amount is \$25, the new balances should be \$75 for the current bank account and \$75 for the other bank account. Pay attention to defensive programming.
+2. Create a new operation in the `BankAccount` class called `addInterest(final double rate)` that adds interest to the bank account based on the specified interest rate. For example, if the current balance is \$100 and the interest rate is 5%, the new balance should be \$105. Pay attention to defensive programming.
 3. Create a new operation in the `BankAccount` class called `getNetBalance()` that returns the balance of the bank account after subtracting any negative balances due to overdrafts. For example, if the balance of the bank account is -50, the `getNetBalance()` operation should return 0.
    Change the implementation of `BankAccount` so that `balance` can be negative.
 
