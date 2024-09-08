@@ -1,5 +1,6 @@
 package de.phl.programmingproject.rectangle;
 
+import de.phl.programmingproject.TestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,18 +29,12 @@ public class RectangleTest {
 
     @Test
     void task_1_getPerimeter_implemented() {
-        Method rectangleMethod = null;
-        try {
-            rectangleMethod = Rectangle.class.getMethod("getPerimeter");
-        } catch (NoSuchMethodException e) {
-            fail("The method 'getPerimeter()' does not exist in the 'Rectangle' class.");
-        }
-
+        Method getPerimeterMethod = TestUtils.getMethod(Rectangle.class, "getPerimeter");
         double perimeter = 2 * (length + width);
 
         try {
             assertEquals(perimeter,
-                    rectangleMethod.invoke(rectangle),
+                    getPerimeterMethod.invoke(rectangle),
                     String.format("The perimeter of a rectangle with length '%f' and width '%f' must be '%f'!",
                             length, width, perimeter));
         } catch (Exception e) {
@@ -75,12 +70,7 @@ public class RectangleTest {
 
     @Test
     void task_3_getDiagonal_implemented() {
-        Method getDiagonalMethod = null;
-        try {
-            getDiagonalMethod = Rectangle.class.getMethod("getDiagonal");
-        } catch (NoSuchMethodException e) {
-            fail("The method 'getDiagonal()' does not exist in the 'Rectangle' class.");
-        }
+        Method getDiagonalMethod = TestUtils.getMethod(Rectangle.class, "getDiagonal");
 
         double diagonal = Math.sqrt(length * length + width * width);
 
@@ -96,12 +86,7 @@ public class RectangleTest {
 
     @Test
     void task_4_isSquare_implemented() {
-        Method isSquareMethod = null;
-        try {
-            isSquareMethod = Rectangle.class.getMethod("isSquare");
-        } catch (NoSuchMethodException e) {
-            fail("The method 'isSquare()' does not exist in the 'Rectangle' class.");
-        }
+        Method isSquareMethod = TestUtils.getMethod(Rectangle.class, "isSquare");
 
         Rectangle square = new Rectangle();
         square.setLength(width);
@@ -121,12 +106,7 @@ public class RectangleTest {
 
     @Test
     void task_5_scale_implemented() {
-        Method scaleMethod = null;
-        try {
-            scaleMethod = Rectangle.class.getMethod("scale", double.class);
-        } catch (NoSuchMethodException e) {
-            fail("The method 'scale(double factor)' does not exist in the 'Rectangle' class.");
-        }
+        Method scaleMethod = TestUtils.getMethod(Rectangle.class, "scale", double.class);
 
         Method finalScaleMethod = scaleMethod;
         // assert that the cause of the thrown exception is an IllegalArgumentException

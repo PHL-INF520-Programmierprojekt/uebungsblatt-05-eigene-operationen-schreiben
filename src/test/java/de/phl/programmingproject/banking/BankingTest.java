@@ -1,5 +1,6 @@
 package de.phl.programmingproject.banking;
 
+import de.phl.programmingproject.TestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,27 +18,15 @@ public class BankingTest {
     BankAccount otherBankAccount = new BankAccount(5, 0);
 
     private Method getTransferToMethod() {
-        try {
-            return BankAccount.class.getMethod("transferTo", BankAccount.class, double.class);
-        } catch (NoSuchMethodException e) {
-            fail("The method 'transferTo(BankAccount otherAccount, double amount)' does not exist in the 'BankAccount' class.");
-        }
-        return null;
+        return TestUtils.getMethod(BankAccount.class, "transferTo", BankAccount.class, double.class);
     }
 
     private Method getAddInterestMethod() {
-        try {
-            return BankAccount.class.getMethod("addInterest", double.class);
-        } catch (NoSuchMethodException e) {
-            fail("The method 'addInterest(double rate)' does not exist in the 'BankAccount' class.");
-        }
-        return null;
+        return TestUtils.getMethod(BankAccount.class, "addInterest", double.class);
     }
 
     @Test
     public void task_1_transferTo_throws_IllegalArgumentException_if_amount_is_negative() {
-
-
         Method finalTransferToMethod = getTransferToMethod();
         Exception exception = assertThrows(Exception.class, () -> finalTransferToMethod.invoke(bankAccount,
                         otherBankAccount, -1),
@@ -106,12 +95,7 @@ public class BankingTest {
 
     @Test
     void task_3_getNetBalance_returns_balance_if_positive() throws InvocationTargetException, IllegalAccessException {
-        Method getNetBalanceMethod = null;
-        try {
-            getNetBalanceMethod = BankAccount.class.getMethod("getNetBalance");
-        } catch (NoSuchMethodException e) {
-            fail("The method 'getNetBalance()' does not exist in the 'BankAccount' class.");
-        }
+        Method getNetBalanceMethod = TestUtils.getMethod(BankAccount.class, "getNetBalance");
         double balance = bankAccount.getBalance();
         assertEquals(balance, getNetBalanceMethod.invoke(bankAccount),
                 "The 'getNetBalance' method must return the balance if it is positive and zero otherwise!");
