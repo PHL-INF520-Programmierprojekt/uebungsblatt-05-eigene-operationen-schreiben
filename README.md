@@ -4,7 +4,7 @@
 
 In diesem Übungsblatt lernen Sie, gegebene Java-Programme durch das Schreiben eigener Operationen zu erweitern.
 
-## Übung: Operation Rechteck
+## Übung 01: Operation Rechteck
 
 In dieser Übung arbeiten wir mit einer bestehenden Java-Klasse und fügen ihr neue Operationen hinzu. Die Klasse, mit der wir arbeiten werden, ist die `Rectangle`-Klasse, die ein Rechteck mit Länge (*Length*) und Breite (*Width*) darstellt.
 
@@ -36,7 +36,7 @@ Hinweis: Sie müssen möglicherweise das Paket `java.lang.Math` importieren, um 
 
 Nachdem Sie die oben genannten Aufgaben abgeschlossen haben, erstellen Sie eine Instanz der `Rectangle`-Klasse in Ihrer `main()`-Operation und testen Sie die verschiedenen Operationen, die Sie erstellt haben. Erstellen Sie zusätzlich einige weitere Instanzen von `Rectangle` und testen Sie die neuen Operationen `isSquare()` und `scale()`.
 
-## Übung: Banking 101
+## Übung 02: Banking 101
 
 In dieser Übung arbeiten wir mit einer bestehenden Java-Klasse und fügen ihr neue Operationen hinzu. Die Klasse, mit der wir arbeiten werden, ist die `BankAccount`-Klasse, die ein Bankkonto mit Kontostand und Kontonummer darstellt.
 
@@ -58,13 +58,13 @@ Die `BankAccount`-Klasse hat die folgenden Operationen:
 ### Aufgaben
 
 1. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `transferTo(final BankAccount otherAccount, final double amount)`, die den angegebenen Betrag vom aktuellen Bankkonto auf das andere Bankkonto überträgt. Beispiel: hat das aktuelle Bankkonto einen Kontostand von \$100 und das andere Bankkonto einen Kontostand von \$50, und der Übertragungsbetrag beträgt \$25, dann sollten die neuen Kontostände \$75 für das aktuelle Bankkonto und \$75 für das andere Bankkonto sein. Achten Sie auf defensive Programmierung.
-2. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `addInterest(final double rate)`, die dem Bankkonto Zinsen auf der Grundlage des angegebenen Zinssatzes hinzufügt. Beispiel: wenn der aktuelle Kontostand $100 und der Zinssatz 5% beträgt, sollte der neue Kontostand \$105 betragen. Achten Sie auf defensive Programmierung.
+2. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `addInterest(final double rate)`, die dem Bankkonto Zinsen auf der Grundlage des angegebenen Zinssatzes hinzufügt. Beispiel: wenn der aktuelle Kontostand $100 und der Zinssatz 5\% beträgt, sollte der neue Kontostand \$105 betragen. Achten Sie auf defensive Programmierung. Die `rate` ist als Fließkommazahl zu verstehen, z.B. 0.05 für 5\%.
 3. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `getNetBalance()`, die den Kontostand des Bankkontos nach Abzug aller negativen Kontostände aufgrund von Überziehungen zurückgibt. D.h., wenn der Kontostand des Bankkontos -50 beträgt, sollte die Operation `getNetBalance()` 0 zurückgeben.
    Ändern Sie die Implementierung von `BankAccount` so, dass `balance` negativ sein kann.
 
 Nachdem Sie die oben genannten Aufgaben abgeschlossen haben, erstellen Sie eine Instanz der `BankAccount`-Klasse in Ihrer `main()`-Operation und testen Sie die verschiedenen Operationen, die Sie erstellt haben.
 
-## Übung: Eine Geschichte eines Restaurants
+## Übung 03: Eine Geschichte eines Restaurants
 
 In dieser Übung arbeiten wir mit einem Java-Programm, das ein Restaurant simuliert. Das Programm beinhaltet eine `Restaurant`-Klasse, eine `Table`-Klasse, eine `MenuItem`-Klasse und eine `Order`-Klasse.
 

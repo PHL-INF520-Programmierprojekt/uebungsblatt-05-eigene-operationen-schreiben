@@ -59,6 +59,7 @@ public class BankAccount {
         balance -= amount;
     }
 
+    @Override
     public String toString() {
         return String.format("Account number: %d, Balance: %f", accountNumber, balance);
     }

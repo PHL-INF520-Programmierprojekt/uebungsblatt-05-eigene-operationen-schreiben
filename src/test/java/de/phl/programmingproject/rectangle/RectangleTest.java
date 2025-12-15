@@ -70,13 +70,11 @@ public class RectangleTest {
 
     @Test
     void task_3_getDiagonal_implemented() {
-        Method getDiagonalMethod = TestUtils.getMethod(Rectangle.class, "getDiagonal");
-
         double diagonal = Math.sqrt(length * length + width * width);
 
         try {
             assertEquals(diagonal,
-                    getDiagonalMethod.invoke(rectangle),
+                    TestUtils.invokeMethod(rectangle, "getDiagonal"),
                     String.format("The diagonal of a rectangle with length '%f' and width '%f' must be '%f'!",
                             length, width, diagonal));
         } catch (Exception e) {
