@@ -55,16 +55,17 @@ The `BankAccount` class has the following operations:
 - `getBalance()`: returns the balance of the bank account
 - `getAccountNumber()`: returns the account number of the bank account
 - `deposit(final double amount)`: adds the specified amount to the balance of the bank account
-- `withdraw(final double amount)`: subtracts the specified amount from the balance of the bank account
+- `withdraw(final double amount)`: subtracts a nonnegative amount; overdrafts are already allowed in the provided implementation. Negative amounts throw `IllegalArgumentException`; zero is allowed.
 - `toString()`: returns a string representation of the bank account in the format "Account Number: {account number}, Balance: ${balance}"
 
 ### Tasks
 
 
 1. Create a new operation in the `BankAccount` class called `transferTo(final BankAccount otherAccount, final double amount)` that transfers the specified amount from the current bank account to the other bank account. For example, if the current bank account has a balance of \$100 and the other bank account has a balance of \$50, and the transfer amount is \$25, the new balances should be \$75 for the current bank account and \$75 for the other bank account. Pay attention to defensive programming.
+   **Transfer contract:** A `null` target, a negative amount or an amount greater than the source balance must throw `IllegalArgumentException`. Rejected transfers leave both balances unchanged. Transfers must not create an overdraft.
 2. Create a new operation in the `BankAccount` class called `addInterest(final double rate)` that adds interest to the bank account based on the specified interest rate. For example, if the current balance is \$100 and the interest rate is 5%, the new balance should be \$105. Pay attention to defensive programming. The `rate` should be interpreted as a floating-point number, e.g., 0.05 for 5%.
 3. Create a new operation in the `BankAccount` class called `getNetBalance()` that returns the balance of the bank account after subtracting any negative balances due to overdrafts. For example, if the balance of the bank account is -50, the `getNetBalance()` operation should return 0.
-   Change the implementation of `BankAccount` so that `balance` can be negative.
+   Keep the provided overdraft behavior unchanged. `getNetBalance()` returns the current balance for nonnegative balances, otherwise 0; it must not change the account balance.
 
 
 After completing the above tasks, create an instance of the `BankAccount` class in your `main()` operation and test out the various operations you have created.

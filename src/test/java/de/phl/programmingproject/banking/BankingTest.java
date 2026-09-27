@@ -120,9 +120,14 @@ public class BankingTest {
     void task_1_rejected_transfer_leaves_both_accounts_unchanged() {
         double sourceBalance = bankAccount.getBalance();
         double targetBalance = otherBankAccount.getBalance();
-        assertThrows(InvocationTargetException.class,
-                () -> getTransferToMethod().invoke(bankAccount, otherBankAccount, sourceBalance + 1));
-        assertEquals(sourceBalance, bankAccount.getBalance());
-        assertEquals(targetBalance, otherBankAccount.getBalance());
+        for (Object[] arguments : new Object[][]{
+                {otherBankAccount, sourceBalance + 1}, {otherBankAccount, -1.0}, {null, 1.0}}) {
+            InvocationTargetException exception = assertThrows(InvocationTargetException.class,
+                    () -> getTransferToMethod().invoke(bankAccount, arguments));
+            assertInstanceOf(IllegalArgumentException.class, exception.getCause(),
+                    "Ein ungültiger Transfer muss eine IllegalArgumentException auslösen.");
+            assertEquals(sourceBalance, bankAccount.getBalance(), "Das Quellkonto darf sich bei Abweisung nicht ändern.");
+            assertEquals(targetBalance, otherBankAccount.getBalance(), "Das Zielkonto darf sich bei Abweisung nicht ändern.");
+        }
     }
 }

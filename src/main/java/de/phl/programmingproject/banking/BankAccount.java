@@ -38,7 +38,7 @@ public class BankAccount {
      */
     public void deposit(final double amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("Amount must be greater than 0");
+            throw new IllegalArgumentException("Amount must not be negative");
         }
         balance += amount;
     }
@@ -51,7 +51,7 @@ public class BankAccount {
      */
     public void withdraw(final double amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("Amount must be greater than 0");
+            throw new IllegalArgumentException("Amount must not be negative");
         }
         balance -= amount;
     }
