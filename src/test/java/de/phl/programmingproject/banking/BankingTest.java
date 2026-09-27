@@ -94,16 +94,35 @@ public class BankingTest {
     }
 
     @Test
-    void task_3_getNetBalance_returns_balance_if_positive() throws InvocationTargetException, IllegalAccessException {
-        Method getNetBalanceMethod = TestUtils.getMethod(BankAccount.class, "getNetBalance");
-        double balance = bankAccount.getBalance();
-        assertEquals(balance, getNetBalanceMethod.invoke(bankAccount),
-                "The 'getNetBalance' method must return the balance if it is positive and zero otherwise!");
+    void task_3_getNetBalance_handles_positive_zero_and_negative_balance() throws ReflectiveOperationException {
+        Method method = TestUtils.getMethod(BankAccount.class, "getNetBalance");
+        BankAccount account = new BankAccount(50, 7);
+        assertEquals(50.0, (double) method.invoke(account), 0.000001);
+        account.withdraw(50);
+        assertEquals(0.0, (double) method.invoke(account), 0.000001);
+        account.withdraw(50);
+        assertEquals(0.0, (double) method.invoke(account), 0.000001);
+        assertEquals(-50.0, account.getBalance(), 0.000001, "getNetBalance darf den Kontostand nicht verändern.");
+    }
 
-        Assertions.assertDoesNotThrow(() -> bankAccount.withdraw(bankAccount.getBalance()+50),
-                "For this task, the 'withdraw' method must not throw an exception if the amount is greater than the balance!");
+    @Test
+    void given_withdraw_allows_overdraft_but_rejects_negative_amounts() {
+        BankAccount account = new BankAccount(0, 8);
+        account.withdraw(0);
+        assertEquals(0.0, account.getBalance());
+        account.withdraw(20);
+        assertEquals(-20.0, account.getBalance());
+        assertThrows(IllegalArgumentException.class, () -> account.withdraw(-1));
+        assertEquals(-20.0, account.getBalance(), "Eine abgewiesene Abhebung verändert das Konto nicht.");
+    }
 
-        assertEquals(0d, getNetBalanceMethod.invoke(bankAccount),
-                "The 'getNetBalance' method must return the balance if it is positive and zero otherwise!");
+    @Test
+    void task_1_rejected_transfer_leaves_both_accounts_unchanged() {
+        double sourceBalance = bankAccount.getBalance();
+        double targetBalance = otherBankAccount.getBalance();
+        assertThrows(InvocationTargetException.class,
+                () -> getTransferToMethod().invoke(bankAccount, otherBankAccount, sourceBalance + 1));
+        assertEquals(sourceBalance, bankAccount.getBalance());
+        assertEquals(targetBalance, otherBankAccount.getBalance());
     }
 }

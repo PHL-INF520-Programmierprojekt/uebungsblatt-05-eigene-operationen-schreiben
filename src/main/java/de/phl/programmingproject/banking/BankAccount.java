@@ -44,17 +44,14 @@ public class BankAccount {
     }
 
     /**
-     * Withdraws the given amount from the account.
+     * Hebt den Betrag ab. In diesem Übungsmodell sind Überziehungen erlaubt.
      *
      * @param amount the amount to withdraw
-     * @throws IllegalArgumentException if the amount is less than 0 or greater than the balance
+     * @throws IllegalArgumentException wenn der Betrag negativ ist
      */
     public void withdraw(final double amount) {
         if (amount < 0) {
             throw new IllegalArgumentException("Amount must be greater than 0");
-        }
-        if (amount > balance) {
-            throw new IllegalArgumentException("Amount must be less than balance");
         }
         balance -= amount;
     }

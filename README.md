@@ -52,15 +52,16 @@ Die `BankAccount`-Klasse hat die folgenden Operationen:
 - `getBalance()`: gibt den Kontostand des Bankkontos zurück
 - `getAccountNumber()`: gibt die Kontonummer des Bankkontos zurück
 - `deposit(final double amount)`: fügt den angegebenen Betrag zum Kontostand des Bankkontos hinzu
-- `withdraw(final double amount)`: zieht den angegebenen Betrag vom Kontostand des Bankkontos ab
+- `withdraw(final double amount)`: zieht einen nichtnegativen Betrag ab. Der Kontostand darf dabei negativ werden; diese Überziehung ist im gegebenen Übungsmodell bereits erlaubt. Negative Abhebebeträge werden mit einer `IllegalArgumentException` abgewiesen. Der Startkontostand muss mindestens 0 sein.
 - `toString()`: gibt eine String-Repräsentation des Bankkontos im Format "Kontonummer: {Kontonummer}, Kontostand: ${Kontostand}" zurück
 
 ### Aufgaben
 
 1. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `transferTo(final BankAccount otherAccount, final double amount)`, die den angegebenen Betrag vom aktuellen Bankkonto auf das andere Bankkonto überträgt. Beispiel: hat das aktuelle Bankkonto einen Kontostand von \$100 und das andere Bankkonto einen Kontostand von \$50, und der Übertragungsbetrag beträgt \$25, dann sollten die neuen Kontostände \$75 für das aktuelle Bankkonto und \$75 für das andere Bankkonto sein. Achten Sie auf defensive Programmierung.
+   **Vertrag für Überweisungen:** Zielkonto darf nicht `null` sein, `amount` muss mindestens 0 sein und darf den aktuellen Kontostand nicht überschreiten. Andernfalls werfen Sie eine `IllegalArgumentException`, ohne eines der Konten zu verändern. Prüfen Sie dies in `transferTo`, bevor Sie `withdraw` und `deposit` aufrufen.
 2. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `addInterest(final double rate)`, die dem Bankkonto Zinsen auf der Grundlage des angegebenen Zinssatzes hinzufügt. Beispiel: wenn der aktuelle Kontostand $100 und der Zinssatz 5\% beträgt, sollte der neue Kontostand \$105 betragen. Achten Sie auf defensive Programmierung. Die `rate` ist als Fließkommazahl zu verstehen, z.B. 0.05 für 5\%.
-3. Erstellen Sie eine neue Operation in der `BankAccount`-Klasse namens `getNetBalance()`, die den Kontostand des Bankkontos nach Abzug aller negativen Kontostände aufgrund von Überziehungen zurückgibt. D.h., wenn der Kontostand des Bankkontos -50 beträgt, sollte die Operation `getNetBalance()` 0 zurückgeben.
-   Ändern Sie die Implementierung von `BankAccount` so, dass `balance` negativ sein kann.
+3. Implementieren Sie `double getNetBalance()`: Bei positivem Kontostand geben Sie diesen zurück, bei Kontostand 0 oder darunter geben Sie `0.0` zurück. Die Methode verändert das Konto nicht.
+   Beispiel: Aus `50.0` wird als Rückgabewert `50.0`, aus `0.0` oder `-50.0` wird `0.0`. Erzeugen Sie einen negativen Kontostand zum Testen durch `withdraw`. Sie müssen dafür keinen vorgegebenen Schutzcode auskommentieren.
 
 Nachdem Sie die oben genannten Aufgaben abgeschlossen haben, erstellen Sie eine Instanz der `BankAccount`-Klasse in Ihrer `main()`-Operation und testen Sie die verschiedenen Operationen, die Sie erstellt haben.
 
